@@ -7,6 +7,7 @@ package tr.gov.ptt.gr1tahsilatuyg.facade;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi;
 import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi_;
@@ -17,6 +18,7 @@ import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi_;
  */
 @Stateless
 public class TahsilatKisiFacade extends AbstractFacade<TahsilatKisi> {
+
     @PersistenceContext(unitName = "tr.gov.ptt_Gr1TahsilatUyg_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -28,16 +30,17 @@ public class TahsilatKisiFacade extends AbstractFacade<TahsilatKisi> {
     public TahsilatKisiFacade() {
         super(TahsilatKisi.class);
     }
-    
-    public TahsilatKisi giriseYetkilimi(TahsilatKisi p_kisi)
-    {
-        TahsilatKisi kisi = (TahsilatKisi)em.createNamedQuery("TahsilatKisi.giriseYetkilimi")
-                .setParameter("kullaniciAd", p_kisi.getKullaniciAd())
-                .setParameter("sifre",p_kisi.getSifre())
-                .getSingleResult();
-        
-        
-        return  kisi;
+
+    public TahsilatKisi giriseYetkilimi(TahsilatKisi p_kisi) {
+        try {
+            TahsilatKisi kisi = (TahsilatKisi) em.createNamedQuery("TahsilatKisi.giriseYetkilimi")
+                    .setParameter("kullaniciAd", p_kisi.getKullaniciAd())
+                    .setParameter("sifre", p_kisi.getSifre())
+                    .getSingleResult();
+            return kisi;
+        } catch (NoResultException nre) {
+            return null;
+        }
     }
-    
+
 }

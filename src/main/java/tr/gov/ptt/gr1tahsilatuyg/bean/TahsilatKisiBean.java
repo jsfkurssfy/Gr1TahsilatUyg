@@ -3,9 +3,11 @@ package tr.gov.ptt.gr1tahsilatuyg.bean;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.servlet.http.HttpSession;
 import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi;
 import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatMenu;
 import tr.gov.ptt.gr1tahsilatuyg.service.TahsilatKisiService;
+import tr.gov.ptt.gr1tahsilatuyg.util.JSFUtil;
 
 /**
  *
@@ -42,10 +44,13 @@ public class TahsilatKisiBean {
             for (TahsilatMenu menu : vtKisi.getTahsilatMenuList()) {                
                 System.out.println(menu.getBaslik() +" - " + menu.getLink());                
             }
-            
-            
+            HttpSession session = JSFUtil.getSession();
+            session.setAttribute("username", vtKisi.getKullaniciAd());
+                        
             return "menu.xhtml?faces-redirect=true";
         } else {
+            
+            JSFUtil.hataMesajiEkle("Hatalı Giriş!", "Kullanıcı Adı yada Şifre Yanlış:");
             return "giris.xhtml?faces-redirect=true";
         }
         

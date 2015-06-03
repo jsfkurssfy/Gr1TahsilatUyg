@@ -11,6 +11,7 @@
         <ui:composition template="./anaTemplate.xhtml">
 
             <ui:define name="content">
+                
                 <h:form id="girisForm">
                     <p:panel header="Giriş Sayfası">
                         <p:messages/>
@@ -34,7 +35,7 @@
                                         value="#{tahsilatKisiBean.kisi.sifre}"
                                         required="true">
                                 <p:ajax event="keyup" update="sifreMsg"/>
-                            </p:password>>
+                            </p:password>
                             <p:message for="sifre" id="sifreMsg"/>
 
                             <f:facet name="footer">
