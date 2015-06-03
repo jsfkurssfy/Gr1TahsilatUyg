@@ -33,13 +33,16 @@ public class TahsilatKisiFacade extends AbstractFacade<TahsilatKisi> {
 
     public TahsilatKisi giriseYetkilimi(TahsilatKisi p_kisi) {
         try {
+
             TahsilatKisi kisi = (TahsilatKisi) em.createNamedQuery("TahsilatKisi.giriseYetkilimi")
                     .setParameter("kullaniciAd", p_kisi.getKullaniciAd())
                     .setParameter("sifre", p_kisi.getSifre())
                     .getSingleResult();
+
             return kisi;
         } catch (NoResultException nre) {
             return null;
+
         }
     }
 

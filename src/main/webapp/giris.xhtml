@@ -8,13 +8,11 @@
 
     <body>
 
-        <ui:composition template="./anaTemplate.xhtml">
-
-            <ui:define name="content">
-                
                 <h:form id="girisForm">
                     <p:panel header="Giriş Sayfası">
-                        <p:messages/>
+                        <p:growl showDetail="true"
+                                 globalOnly="true"
+                                 sticky="true"/>
                         <p:panelGrid columns="3">
                             <f:facet name="header">
                                 <p:outputLabel value="Giriş Bilgileri"/>
@@ -48,9 +46,5 @@
 
                     </p:panel>                    
                 </h:form>
-            </ui:define>
-
-        </ui:composition>
-
     </body>
 </html>
