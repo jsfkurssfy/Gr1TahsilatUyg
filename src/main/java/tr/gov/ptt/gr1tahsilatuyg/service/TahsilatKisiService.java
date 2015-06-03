@@ -7,6 +7,7 @@ package tr.gov.ptt.gr1tahsilatuyg.service;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi;
 import tr.gov.ptt.gr1tahsilatuyg.facade.TahsilatKisiFacade;
 
 /**
@@ -20,5 +21,10 @@ public class TahsilatKisiService {
     private TahsilatKisiFacade tahsilatKisiFacade;
     
     // facade metodları çağrılacak.
+    
+    public  TahsilatKisi giriseYetkilimi(TahsilatKisi p_kisi)            
+    {
+        return tahsilatKisiFacade.giriseYetkilimi(p_kisi);
+    }
     
 }
