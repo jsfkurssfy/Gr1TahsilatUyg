@@ -10,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi;
-import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKisi_;
 
 /**
  *
@@ -40,7 +39,8 @@ public class TahsilatKisiFacade extends AbstractFacade<TahsilatKisi> {
                     .getSingleResult();
 
             return kisi;
-        } catch (NoResultException nre) {
+        }
+        catch (NoResultException nre) {
             return null;
 
         }

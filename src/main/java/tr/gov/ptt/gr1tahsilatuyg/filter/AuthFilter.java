@@ -43,7 +43,7 @@ public class AuthFilter implements Filter {
                 chain.doFilter(request, response);
             } else // user didn't log in but asking for a page that is not allowed so take user to login page
             {
-                res.sendRedirect(req.getContextPath() + "/faces/login.xhtml");  // Anonymous user. Redirect to login page
+                res.sendRedirect(req.getContextPath() + "/faces/.xhtml");  // Anonymous user. Redirect to login page
             }
         } catch (Throwable t) {
             System.out.println(t.getMessage());

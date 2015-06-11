@@ -46,7 +46,7 @@ public class TahsilatMenuBean {
 
             menuItem = new DefaultMenuItem();
             menuItem.setValue(menu.getBaslik());
-            menuItem.setUrl(menu.getLink() + ".xhtml?faces-redirect=true");
+            menuItem.setCommand(menu.getLink());
             subMenu.addElement(menuItem);
         }
         simpleMenuModel.addElement(subMenu);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
@@ -17,10 +18,12 @@ import tr.gov.ptt.gr1tahsilatuyg.util.JSFUtil;
  * @author Administrator
  */
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class TahsilatKisiBean {
 
     private TahsilatKisi kisi;
+    
+    private List<String> temaListesi;
 
     @EJB
     private TahsilatKisiService kisiService;
@@ -28,8 +31,32 @@ public class TahsilatKisiBean {
     public TahsilatKisiBean() {
 
         kisi = new TahsilatKisi();
+        temaListesi = new ArrayList<String>();
+        
+        kisi.setTema("bluesky");
+        temaListesiDoldur();
+    }
+    
+    public void temaListesiDoldur()
+    {
+        temaListesi.add("afterdark");
+        temaListesi.add("redmond");
+        temaListesi.add("black-tie");
+        temaListesi.add("blitzer");
+        temaListesi.add("hot-sneaks");
+        temaListesi.add("bluesky");
+        temaListesi.add("start");
+        temaListesi.add("sunny");
+        temaListesi.add("le-frog");
+        temaListesi.add("glass-x");
+        temaListesi.add("aristo");
+        
     }
 
+    public List<String> getTemaListesi()
+    {
+        return temaListesi;
+    }
     public TahsilatKisi getKisi() {
         return kisi;
     }
@@ -49,9 +76,6 @@ public class TahsilatKisiBean {
 
                 HttpSession session = JSFUtil.getSession();
                 session.setAttribute("username", vtKisi.getKullaniciAd());
-                
-                session.setAttribute("kisi", vtKisi);
-                
                 return "menu.xhtml?faces-redirect=true";
             } else {
 
@@ -65,4 +89,17 @@ public class TahsilatKisiBean {
         }
     }
 
+    public String guvenliCikis(){
+    
+        HttpSession session = JSFUtil.getSession();
+        System.out.println("session bitiyor.........");
+        session.invalidate();
+        
+        return "giris.xhtml?faces-redirect=true";
+    }
+    
+    public void temaKaydet()
+    {
+        kisiService.kisiGuncelle(kisi);
+    }
 }

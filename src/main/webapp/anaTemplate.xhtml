@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -14,53 +15,62 @@
 
     <h:body>
 
-
         <p:layout fullPage="true">
-
-
-            <p:layoutUnit  position="north" size="140" header="Top" resizable="true" closable="true" collapsible="true">
-                <ui:insert name="top" >
-
-                    <table>
-                        <tr>                            
+            <p:layoutUnit position="north" size="150" resizable="true"
+                          closable="true" collapsible="true">
+                <ui:insert name="top">
+                    <table border="1" width="100%" >
+                        <tr>
                             <td width="20%">
-                                <p:graphicImage library="img"
-                                                name="ptt.png"
-                                                style="width: 65%"/>
-                            </td> 
-                            <td width="20%">
-
+                                <p:graphicImage library="img" name="ptt.png" style="width: 60%" rendered="true"/>
                             </td>
-                            <td width="60%">
-                                <h2>TAHSİLAT UYGULAMASI</h2>  
+                            <td width="80%">
+                                <center>
+                                    <font  size="6">
+                                        <B>
+                                            TAHSİLAT UYGULAMASI                                         
+                                        </B>
+                                    </font>  
+                                </center>                                 
                             </td>
-                        </tr>                        
-                    </table>
-
+                        </tr> 
+                    </table>                                         
+                    <!--<center><font size="6">KİŞİ TELEFON UYGULAMASI</font></center>-->
                 </ui:insert>
             </p:layoutUnit>
-
-            <p:layoutUnit position="west" size="200" header="Menu" resizable="true" closable="true" collapsible="true">
+            <p:layoutUnit position="south" size="60"
+                          resizable="true" closable="true" collapsible="true">
+                <ui:insert name="bottom">
+                    <h:outputText value="Copyright @ 2015" />
+                </ui:insert>
+            </p:layoutUnit>
+            <p:layoutUnit position="west" size="200" 
+                          resizable="true" closable="true"
+                          collapsible="true">
                 <ui:insert name="left">
-                    <p:menu  model="#{tahsilatMenuBean.simpleMenuModel}"/>
+                    <h:form>
+
+                        <p:menu model="#{tahsilatMenuBean.simpleMenuModel}"/>
+
+                        <p/>
+                        <p:themeSwitcher style="width: 165px" value="#{tahsilatKisiBean.kisi.tema}">
+                            <f:selectItem itemLabel="Tema Seçiniz" itemValue=""/>
+                            <f:selectItems value="#{tahsilatKisiBean.temaListesi}"/> 
+                            <p:ajax listener="#{tahsilatKisiBean.temaKaydet()}"/>
+
+                        </p:themeSwitcher>
+
+                    </h:form>
+
+                </ui:insert>           
+
+            </p:layoutUnit>
+
+            <p:layoutUnit id="centerUnit" position="center">
+                <ui:insert name="content">
+                    <h:outputText value="Tahsilat Uygulaması"/>
                 </ui:insert>
             </p:layoutUnit>
-
-            <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
-                <ui:insert name="bottom">  <h:outputText value="South unit content." /> </ui:insert> 
-            </p:layoutUnit>
-
-
-
-
-
-
-
-            <p:layoutUnit position="center">
-                <ui:insert name="content">deneme</ui:insert> 
-            </p:layoutUnit>
-
-
         </p:layout>
 
 

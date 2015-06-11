@@ -11,12 +11,15 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -44,6 +47,9 @@ public class TahsilatKisi implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
+    @SequenceGenerator(name="kisiseq", sequenceName = "SEQ_THS_KISI",
+            initialValue = 1,allocationSize = 1)
+    @GeneratedValue(generator = "kisiseq", strategy = GenerationType.SEQUENCE)
     private BigDecimal id;
     @Size(max = 30)
     @Column(name = "AD")
@@ -60,6 +66,10 @@ public class TahsilatKisi implements Serializable {
     @Size(max = 1)
     @Column(name = "ROL")
     private String rol;
+    
+    @Size(max = 50)
+    @Column(name = "TEMA")
+    private String tema;
     @JoinTable(name = "THS_KISI_MENU", joinColumns = {
         @JoinColumn(name = "KISI_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "MENU_ID", referencedColumnName = "ID")})
@@ -127,6 +137,14 @@ public class TahsilatKisi implements Serializable {
 
     public void setTahsilatMenuList(List<TahsilatMenu> tahsilatMenuList) {
         this.tahsilatMenuList = tahsilatMenuList;
+    }
+
+    public String getTema() {
+        return tema;
+    }
+
+    public void setTema(String tema) {
+        this.tema = tema;
     }
 
     @Override

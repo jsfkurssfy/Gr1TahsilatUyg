@@ -9,7 +9,7 @@
 
     <name>Gr1TahsilatUyg</name>
 
-    <properties>
+        <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -48,13 +48,11 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- ORACLE database driver -->
         <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0</version>
-        </dependency>
- 
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0</version>
+	</dependency>
     </dependencies>
 
     <build>
