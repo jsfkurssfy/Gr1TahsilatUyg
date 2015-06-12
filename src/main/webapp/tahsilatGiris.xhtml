@@ -20,13 +20,37 @@
                             </p:column>
                             <p:column>
                                 <p:autoComplete id="kurumAdi"
-                                                value=""
-                                                completeMethod=""
+                                                value="#{tahsilatBorcBean.tahsilatBorc.kurum.ad}"
+                                                completeMethod="#{tahsilatBorcBean.kurumAdiTamamla}"
                                                 required="true"/>
                             </p:column>
                             <p:column>
                                 <p:message id="kurumAdiMsg" for="kurumAdi"/>
                             </p:column>
+                            
+                            <p:column>
+                                <p:outputLabel value="Abone No:"/>                                
+                            </p:column>
+                            <p:column>
+                                <p:inputText id="aboneNo"
+                                             value="#{tahsilatBorcBean.tahsilatBorc.aboneNo}"
+                                             required="true"/>
+                            </p:column>
+                            <p:column>
+                                <p:message id="aboneNoMsg" for="aboneNo"/>
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value=""/>                                
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value=""/>                                
+                            </p:column>
+                            <p:column>
+                                <p:commandButton value="Sorgula"
+                                                 action="#{tahsilatBorcBean.faturaSorgula()}"
+                                                 update="@form"/>
+                            </p:column>
+                            
                         </p:panelGrid>
 
                     </p:panel>

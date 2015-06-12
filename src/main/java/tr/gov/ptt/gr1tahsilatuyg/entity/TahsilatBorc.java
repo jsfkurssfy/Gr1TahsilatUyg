@@ -38,6 +38,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "TahsilatBorc.findByAboneAd", query = "SELECT t FROM TahsilatBorc t WHERE t.aboneAd = :aboneAd"),
     @NamedQuery(name = "TahsilatBorc.findByAboneSoyad", query = "SELECT t FROM TahsilatBorc t WHERE t.aboneSoyad = :aboneSoyad"),
     @NamedQuery(name = "TahsilatBorc.findByFaturaNo", query = "SELECT t FROM TahsilatBorc t WHERE t.faturaNo = :faturaNo"),
+    @NamedQuery(name = "TahsilatBorc.borclariGetirKurumIDAboneNo",query = "SELECT t FROM TahsilatBorc t WHERE t.kurum.id=:kurumId and  t.aboneNo = :aboneNo and t.faturaDurum =0"),
     @NamedQuery(name = "TahsilatBorc.findByFaturaSonOdemeTrh", query = "SELECT t FROM TahsilatBorc t WHERE t.faturaSonOdemeTrh = :faturaSonOdemeTrh"),
     @NamedQuery(name = "TahsilatBorc.findByFaturaTutar", query = "SELECT t FROM TahsilatBorc t WHERE t.faturaTutar = :faturaTutar"),
     @NamedQuery(name = "TahsilatBorc.findByFaturaDurum", query = "SELECT t FROM TahsilatBorc t WHERE t.faturaDurum = :faturaDurum")})
@@ -76,10 +77,7 @@ public class TahsilatBorc implements Serializable {
     private TahsilatKurum kurum;
 
     public TahsilatBorc() {
-    }
-
-    public TahsilatBorc(BigDecimal id) {
-        this.id = id;
+        kurum = new TahsilatKurum();
     }
 
     public BigDecimal getId() {
