@@ -42,4 +42,8 @@ public class TahsilatBorcService {
         return tahsilatBorcFacade.borclariGetir(kurumId, p_aboneNo);     
                 
     }
+   public List<Object[]> chartVerisiGetir() {
+
+       return tahsilatBorcFacade.chartVerisiGetir();
+    }
 }

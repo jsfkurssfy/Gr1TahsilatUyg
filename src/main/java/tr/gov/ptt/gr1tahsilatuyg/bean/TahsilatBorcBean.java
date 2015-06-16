@@ -113,6 +113,7 @@ public class TahsilatBorcBean {
     }
 
     public void paraUstuHesapla() {
+        
         paraUstu = alinan - toplam;
     }
     

@@ -18,6 +18,7 @@ import tr.gov.ptt.gr1tahsilatuyg.entity.TahsilatKurum;
  */
 @Stateless
 public class TahsilatBorcFacade extends AbstractFacade<TahsilatBorc> {
+
     @PersistenceContext(unitName = "tr.gov.ptt_Gr1TahsilatUyg_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -29,14 +30,24 @@ public class TahsilatBorcFacade extends AbstractFacade<TahsilatBorc> {
     public TahsilatBorcFacade() {
         super(TahsilatBorc.class);
     }
-   
-    public List<TahsilatBorc> borclariGetir(Integer p_kurumId, String p_aboneNo)
-    {
-        List<TahsilatBorc> borcListesi =   em.createNamedQuery("TahsilatBorc.borclariGetirKurumIDAboneNo")
-                    .setParameter("aboneNo", p_aboneNo)
-                    .setParameter("kurumId", p_kurumId)
-                    .getResultList();
-        
+
+    public List<TahsilatBorc> borclariGetir(Integer p_kurumId, String p_aboneNo) {
+        List<TahsilatBorc> borcListesi = em.createNamedQuery("TahsilatBorc.borclariGetirKurumIDAboneNo")
+                .setParameter("aboneNo", p_aboneNo)
+                .setParameter("kurumId", p_kurumId)
+                .getResultList();
+
         return borcListesi;
+    }
+
+    public List<Object[]> chartVerisiGetir() {
+
+        List<Object[]>  kurumBorcListe = em.createNativeQuery("select kurum.ad, "
+                + "sum(borc.fatura_tutar) toplam_borc "
+                + "from ths_kurum kurum, ths_borc borc "
+                + "where kurum.id= borc.kurum_id "
+                + "group by kurum.ad").getResultList();
+        System.out.println("************kurumborclistesi:"+kurumBorcListe.size());
+        return  kurumBorcListe;
     }
 }
